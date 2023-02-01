@@ -3,17 +3,17 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://dgip2how34ift"
-path="res://.godot/imported/Player.glb-bf85e15289e95a43a91917dec02bdf79.scn"
+uid="uid://c2vlckyrp6hlj"
+path="res://.godot/imported/blasterG.glb-f7b3057f41364eb1fcdaa25992a40b28.scn"
 
 [deps]
 
-source_file="res://Resources/Gltf_Glb/Player.glb"
-dest_files=["res://.godot/imported/Player.glb-bf85e15289e95a43a91917dec02bdf79.scn"]
+source_file="res://Resources/blasterG.glb"
+dest_files=["res://.godot/imported/blasterG.glb-f7b3057f41364eb1fcdaa25992a40b28.scn"]
 
 [params]
 
-nodes/root_type="CharacterBody3D"
+nodes/root_type="Node3D"
 nodes/root_name="Scene Root"
 nodes/apply_root_scale=true
 nodes/root_scale=1.0
