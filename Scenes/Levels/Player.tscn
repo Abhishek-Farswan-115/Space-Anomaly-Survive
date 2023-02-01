@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://dusy73shsug4i"]
+
+[ext_resource type="PackedScene" uid="uid://dgip2how34ift" path="res://Resources/Gltf_Glb/Player.glb" id="1_koglu"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bwme4"]
+radius = 0.314876
+height = 1.54861
+
+[node name="Player" instance=ExtResource("1_koglu")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.763695, 0)
+shape = SubResource("CapsuleShape3D_bwme4")
