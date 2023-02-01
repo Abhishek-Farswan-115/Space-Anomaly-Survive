@@ -1,6 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://bkabd7gtp5g62"]
+[gd_scene load_steps=5 format=3 uid="uid://bkabd7gtp5g62"]
 
 [ext_resource type="PackedScene" uid="uid://c47l4mffd2qub" path="res://Resources/Gltf_Glb/level1.glb" id="1_bysao"]
+[ext_resource type="Script" path="res://scripts/Server.gd" id="2_ppqyi"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1n80i"]
+size = Vector3(80.8248, 1, 68.6964)
+
+[sub_resource type="LabelSettings" id="LabelSettings_3nyeu"]
+font_color = Color(1, 0.352941, 0.286275, 1)
 
 [node name="Level" type="Node3D"]
 
@@ -9,3 +16,102 @@ transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75
 shadow_enabled = true
 
 [node name="level1" parent="." instance=ExtResource("1_bysao")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_1n80i")
+
+[node name="Server" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_ppqyi")
+
+[node name="bg" type="Panel" parent="Server"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="container" type="MarginContainer" parent="Server"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 48
+theme_override_constants/margin_top = 48
+theme_override_constants/margin_right = 48
+theme_override_constants/margin_bottom = 48
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Server/container"]
+layout_mode = 2
+theme_override_constants/separation = 32
+
+[node name="Error" type="Label" parent="Server/container/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+label_settings = SubResource("LabelSettings_3nyeu")
+horizontal_alignment = 1
+
+[node name="HSplitContainer" type="HSplitContainer" parent="Server/container/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/autohide = 0
+
+[node name="join" type="VBoxContainer" parent="Server/container/VBoxContainer/HSplitContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="Server/container/VBoxContainer/HSplitContainer/join"]
+layout_mode = 2
+text = "JOIN SERVER"
+horizontal_alignment = 1
+
+[node name="ip_port" type="LineEdit" parent="Server/container/VBoxContainer/HSplitContainer/join"]
+layout_mode = 2
+placeholder_text = "IP"
+expand_to_text_length = true
+
+[node name="Join" type="Button" parent="Server/container/VBoxContainer/HSplitContainer/join"]
+layout_mode = 2
+text = "Join
+"
+
+[node name="host" type="VBoxContainer" parent="Server/container/VBoxContainer/HSplitContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="Server/container/VBoxContainer/HSplitContainer/host"]
+layout_mode = 2
+text = "CREATE SERVER"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Server/container/VBoxContainer/HSplitContainer/host"]
+layout_mode = 2
+
+[node name="ip_text" type="Label" parent="Server/container/VBoxContainer/HSplitContainer/host/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "IP :"
+uppercase = true
+
+[node name="Button" type="Button" parent="Server/container/VBoxContainer/HSplitContainer/host/HBoxContainer"]
+layout_mode = 2
+text = "Copy"
+
+[node name="Host" type="Button" parent="Server/container/VBoxContainer/HSplitContainer/host"]
+layout_mode = 2
+text = "Host
+"
+
+[connection signal="text_changed" from="Server/container/VBoxContainer/HSplitContainer/join/ip_port" to="Server" method="_on_ip_port_text_changed"]
+[connection signal="pressed" from="Server/container/VBoxContainer/HSplitContainer/join/Join" to="Server" method="_on_join_pressed"]
+[connection signal="pressed" from="Server/container/VBoxContainer/HSplitContainer/host/HBoxContainer/Button" to="Server" method="_on_button_pressed"]
+[connection signal="pressed" from="Server/container/VBoxContainer/HSplitContainer/host/Host" to="Server" method="_on_host_pressed"]
