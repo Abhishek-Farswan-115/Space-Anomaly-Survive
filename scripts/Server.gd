@@ -49,7 +49,7 @@ func _on_join_pressed() -> void:
 	if err != OK:
 		$container/VBoxContainer/Error.text = "Couldnt Join The Server"
 		return
-	elif err == OK and err != 0:
+	elif err == OK:
 		multiplayer.multiplayer_peer = enet
 		hide()
 
